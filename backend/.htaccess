@@ -1,0 +1,25 @@
+# -FrontPage-
+
+IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
+
+<Limit GET HEAD POST PUT DELETE OPTIONS>
+# Deprecated apache 2.2 syntax:
+# Order Allow,Deny
+# Allow from all
+# Apache > 2.4 requires:
+Require all granted
+</Limit>
+<IfModule mod_rewrite.c>
+Options +FollowSymLinks
+RewriteEngine On
+# redirect all api calls to /api/index.php
+# RewriteRule ^(.*)subscription(.*)$ /pwa1/subst.php [L,NC]
+RewriteRule pmp/subscription pmp/subst.php
+</IfModule>
+#Rewrite everything to https
+
+RewriteEngine On
+
+RewriteCond %{HTTPS} !=on
+
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

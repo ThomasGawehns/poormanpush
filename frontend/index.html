@@ -1,0 +1,46 @@
+<HTML>
+	<HEAD>
+		<TITLE>poor man push</TITLE>
+		<META content="ThomasGawehns" name="author">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<script>
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('./sw.js', 
+	{ scope: '/' }).then(function(reg) {
+			// Registrierung erfolgreich
+			console.log('Registration ok. Scope is ' + reg.scope);
+			}).catch(function(error) {
+				// Registrierung fehlgeschlagen
+				console.log('Registration nok: ' + error);
+				});
+};
+</script>
+		<script src="public_key.js"></script>
+	</HEAD>
+	<BODY text="#000000" bgColor="#ffffcc">
+		<h3>Push Notifications</h3>
+		<div id="startup">
+			<p>don't know yet about your system</p>
+		</div>
+		<div id="notImplemented" style="display: none">
+			<p>This browser does not support push notifications</p>
+		</div>
+		<div id="subscribed" style="display: none">
+			<br/>
+			<textarea id="subscription" readonly>
+			</textarea>
+			<br/>
+			<button onclick="unsubscribe()">unsubscribe</button>
+		</div>
+		<div id="unsubscribed" style="display: none">
+			<button onclick="subscribe()">subscribe</button>
+		</div>
+		<P align="center"> 
+		<BR>© 2018 Dipl. Inf. Thomas Gawehns <BR>Feel free to copy&amp;paste
+		</P>
+		<script src="index.js"></script>
+	</BODY>
+</HTML>
